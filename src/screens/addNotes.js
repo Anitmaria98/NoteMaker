@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text, IconButton, TextInput, FAB } from "react-native-paper";
 import Header from "../components/Header";
+import displayNotes from "./displayNotes";
 
 const addNotes = ({ navigation }) => {
   const [noteTitle, setNoteTitle] = useState("");
@@ -10,10 +11,10 @@ const addNotes = ({ navigation }) => {
     navigation.state.params.addNote({ noteTitle, noteValue });
     navigation.goBack();
   };
-  const NotesAdd =()=>{
-  setNoteDescription([...noteDescription, noteTitle]);
-    setNoteTitle(null);
-  }
+  // const NotesAdd =()=>{
+  // setNoteDescription([...noteDescription, noteTitle]);
+  //   setNoteTitle(null);
+  // }
   return (
     <>
       <Header titleText="Add a new note" />
@@ -39,8 +40,9 @@ const addNotes = ({ navigation }) => {
           multiline={true}
           mode={"flat"}
         />
-        <TouchableOpacity onPress={() => NotesAdd()}>
-          <FAB style={styles.add} small icon="plus" />
+        <TouchableOpacity >
+          <FAB style={styles.add} small icon="plus"
+          onPress={() => navigation.navigate("displayNotes",{ displayNotes })} />
         </TouchableOpacity>
 
         <View style={styles.title}>
